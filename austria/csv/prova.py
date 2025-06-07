@@ -6,10 +6,13 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.metrics import mean_absolute_error, mean_absolute_percentage_error
 from sklearn.ensemble import RandomForestRegressor
+from joblib import dump
+
 
 # Construct relative path using os.path
-data_path = os.path.join("austria", "insurance.csv")
-df = pd.read_csv(data_path)
+current_dir = os.path.dirname(__file__)
+csv_path = os.path.join(current_dir, "csv", "insurance.csv")
+df = pd.read_csv(csv_path)
 
 
 # Clean data
@@ -73,6 +76,9 @@ y_test_pred = pipe.predict(x_test)
 print(f"Mean Absolute Error (MAE): {mean_absolute_error(y_test, y_test_pred):.2f}")
 print(f"Mean Absolute Percentage Error (MAPE): {mean_absolute_percentage_error(y_test, y_test_pred):.4f}")
 
+# Save the trained pipeline
+dump(pipe, 'insurance_model_pipeline.joblib')
+
 # -----------------------
 # BMI Analysis
 # -----------------------
@@ -103,4 +109,3 @@ print("\nBMI Categories:")
 print(df["categoria_bmi"].value_counts())
 print("\nSample of BMI data:")
 print(df[["bmi", "categoria_bmi", "salutare"]].head(10))
-
