@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
@@ -6,9 +7,10 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.metrics import mean_absolute_error, mean_absolute_percentage_error
 from sklearn.ensemble import RandomForestRegressor
 
+# Construct relative path using os.path
+data_path = os.path.join("austria", "insurance.csv")
+df = pd.read_csv(data_path)
 
-# Construct relative path and load data
-df = pd.read_csv("austria\insurance.csv")
 
 # Clean data
 df.dropna(axis=0, inplace=True)
