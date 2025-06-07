@@ -22,7 +22,7 @@ jobs:
             - run: |
                 python prova.py
               working-directory: austria
-            - run: ls -la austria/
+
 
             - uses: actions/upload-artifact@v4
               with:
