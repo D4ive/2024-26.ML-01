@@ -1,0 +1,34 @@
+name: Action di Austria
+on: 
+  push:
+jobs: 
+  ciao: 
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "ciao sono una stringa"
+      - run: echo "ciao sono una stringa 2"
+      - run: python --version
+      - run: pip --version
+      - run: lsb_release -d
+      - run: ls -la 
+      - run: pwd
+      - run: env
+      - uses: actions/checkout@v4 # svolge git clone
+        with:
+          sparse-checkout: |
+            austria
+      - run: ls -la 
+      - uses: actions/setup-python@v5 # equivalente di venv
+        with:
+          python-version: '3.12.7'
+      - run: python --version
+      - run: python prova.py
+        working-directory: austria
+      - run: pip install -r requirements.txt
+        working-directory: austria
+      - run: python pythonstartup.py --dataset_path startupdata.csv
+        working-directory: austria
+      - uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: austria/logistic_model.joblib
