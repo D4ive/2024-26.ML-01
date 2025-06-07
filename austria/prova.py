@@ -77,7 +77,7 @@ print(f"Mean Absolute Error (MAE): {mean_absolute_error(y_test, y_test_pred):.2f
 print(f"Mean Absolute Percentage Error (MAPE): {mean_absolute_percentage_error(y_test, y_test_pred):.4f}")
 
 # Save the trained pipeline
-dump(pipe, 'austria/insurance_model_pipeline.joblib')
+dump(pipe, 'insurance_model_pipeline.joblib')
 
 # -----------------------
 # BMI Analysis
