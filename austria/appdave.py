@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import joblib
 import time
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -21,7 +22,7 @@ def infer():
         if modello is None:
             raise ValueError("Model is not loaded")
 
-        prediction = modello.predict([[valore]])
+        prediction = modello.predict(pd.DataFrame([[valore]], columns=["Years of Experience"]))
         latency = time.time() - start_time
         print(f"Inference time: {latency:.4f} seconds")
 

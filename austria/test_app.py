@@ -10,7 +10,7 @@ def client():
         yield client
 
 def test_infer(client):
-    response = client.post('/infer', json={'hyper_param_a': 5})
+    response = client.post('/infer', json={'hyper_param_a': 3})
     assert response.status_code == 200
     data = response.get_json()
     print(f"Response data: {data}")
